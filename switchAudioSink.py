@@ -1,8 +1,12 @@
 import os
 
 
+def execute_command(command):
+    print(command)
+    os.system(command)
+
 def get_sinks():
-    os.system("pactl list sinks short > tmp_sinks.txt")
+    execute_command("pactl list sinks short > tmp_sinks.txt")
     sinks = []
     with open("tmp_sinks.txt", "r") as f:
         lines = f.readlines()
@@ -14,7 +18,7 @@ def get_sinks():
 
 
 def get_default_sink():
-    os.system("pactl info > tmp_info.txt")
+    execute_command("pactl info > tmp_info.txt")
     with open("tmp_info.txt", "r") as f:
         lines = f.readlines()
     for line in lines:
@@ -24,7 +28,7 @@ def get_default_sink():
 
 
 def set_default_sink(sink_name):
-    os.system(f"pactl set-default-sink {sink_name}")
+    execute_command(f"pactl set-default-sink {sink_name}")
 
 
 def main():

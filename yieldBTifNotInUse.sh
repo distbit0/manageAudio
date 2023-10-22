@@ -14,7 +14,7 @@ for pid in $(pgrep -f $SCRIPT_NAME); do
 done
 
 while true; do
-    AUDIO_STREAMS=$(pacmd list-sink-inputs | grep 'state: RUNNING')
+    AUDIO_STREAMS=$(pactl list sink-inputs | grep 'state: RUNNING')
 
     if [[ -z $AUDIO_STREAMS ]]; then
         # Suspend PulseAudio if not already suspended
