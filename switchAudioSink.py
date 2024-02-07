@@ -23,6 +23,7 @@ def get_default_sink():
         lines = f.readlines()
     for line in lines:
         if "Default Sink: " in line:
+            os.remove("tmp_info.txt")
             return line.split(": ")[1].strip()
     os.remove("tmp_info.txt")
 
