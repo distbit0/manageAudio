@@ -5,6 +5,7 @@ def execute_command(command):
     print(command)
     os.system(command)
 
+
 def get_sinks():
     execute_command("pactl list sinks short > tmp_sinks.txt")
     sinks = []
@@ -40,9 +41,9 @@ def main():
     speaker_sink = None
 
     for sink in sinks:
-        if "bluez" in sink["name"]:
+        if "bluez" in sink["name"] and not bluetooth_sink:
             bluetooth_sink = sink["name"]
-        else:
+        elif "bluez" not in sink["name"] and not speaker_sink:
             speaker_sink = sink["name"]
 
     if default_sink == bluetooth_sink:
